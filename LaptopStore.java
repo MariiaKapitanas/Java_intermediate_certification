@@ -26,38 +26,39 @@ public class LaptopStore {
     }
 
     public void filterLaptops() {
-        Scanner scanner = new Scanner(System.in);
-        Map<String, Object> criteria = new HashMap<>();
+        try (Scanner scanner = new Scanner(System.in)) {
+            Map<String, Object> criteria = new HashMap<>();
 
-        System.out.println("Введите минимальный объем ОЗУ (в ГБ) или -1, чтобы пропустить: ");
-        int ram = scanner.nextInt();
-        if (ram > 0) {
-            criteria.put("ram", ram);
-        }
+            System.out.println("Введите минимальный объем ОЗУ (в ГБ) или -1, чтобы пропустить: ");
+            int ram = scanner.nextInt();
+            if (ram > 0) {
+                criteria.put("ram", ram);
+            }
 
-        System.out.println("Введите минимальный объем ЖД (в ГБ) или -1, чтобы пропустить: ");
-        int storage = scanner.nextInt();
-        if (storage > 0) {
-            criteria.put("storage", storage);
-        }
+            System.out.println("Введите минимальный объем ЖД (в ГБ) или -1, чтобы пропустить: ");
+            int storage = scanner.nextInt();
+            if (storage > 0) {
+                criteria.put("storage", storage);
+            }
 
-        scanner.nextLine();  // Consume newline
+            scanner.nextLine();  // Consume newline
 
-        System.out.println("Введите операционную систему или нажмите Enter, чтобы пропустить: ");
-        String os = scanner.nextLine();
-        if (!os.isEmpty()) {
-            criteria.put("os", os);
-        }
+            System.out.println("Введите операционную систему или нажмите Enter, чтобы пропустить: ");
+            String os = scanner.nextLine();
+            if (!os.isEmpty()) {
+                criteria.put("os", os);
+            }
 
-        System.out.println("Введите цвет или нажмите Enter, чтобы пропустить: ");
-        String color = scanner.nextLine();
-        if (!color.isEmpty()) {
-            criteria.put("color", color);
-        }
+            System.out.println("Введите цвет или нажмите Enter, чтобы пропустить: ");
+            String color = scanner.nextLine();
+            if (!color.isEmpty()) {
+                criteria.put("color", color);
+            }
 
-        Set<Laptop> filteredLaptops = filterByCriteria(criteria);
-        for (Laptop laptop : filteredLaptops) {
-            System.out.println(laptop);
+            Set<Laptop> filteredLaptops = filterByCriteria(criteria);
+            for (Laptop laptop : filteredLaptops) {
+                System.out.println(laptop);
+            }
         }
     }
 
